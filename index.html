@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PKU MUI JAKARTA — RESEARCH OS | Panduan Tesis Angkatan 19</title>
+  <meta name="description" content="Portal panduan tesis cute & friendly berbasis Research OS dan AI khusus mahasiswa PKU MUI Jakarta Angkatan 19. Tesis jadi lebih terarah, santai, dan tuntas!">
+  
+  <!-- Google Fonts: Fredoka (Headings) & Nunito (Body) & JetBrains Mono (Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+
+  <!-- Floating Canvas for Confetti -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Returning User Top Bar (Dynamic from LocalStorage) -->
+  <div id="returning-user-bar" class="returning-user-bar hidden">
+    <div class="container returning-content">
+      <div class="returning-info">
+        <span class="user-wave">👋</span>
+        <span id="returning-welcome-text">Selamat datang kembali, <strong>Ahmad</strong>! Setup aktif: <span class="badge-tag">Kualitatif</span></span>
+      </div>
+      <div class="returning-actions">
+        <button id="btn-resume-setup" class="btn btn-sm btn-mint">Lanjut Setup 🚀</button>
+        <button id="btn-reset-data" class="btn btn-sm btn-ghost-pill">Mulai Ulang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cute Floating Pill Navbar -->
+  <header id="main-header" class="navbar-sticky">
+    <div class="container navbar-container">
+      <a href="#" class="brand-logo" aria-label="Beranda PKU MUI Research OS">
+        <div class="logo-mascot-mini">
+          <!-- Mini Riset Buddy Icon -->
+          <svg width="34" height="34" viewBox="0 0 48 48" fill="none">
+            <rect x="6" y="8" width="36" height="34" rx="10" fill="#4ADE80" stroke="#1E2923" stroke-width="2.5"/>
+            <path d="M12 8V42" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="21" cy="22" r="3" fill="#1E2923"/>
+            <circle cx="33" cy="22" r="3" fill="#1E2923"/>
+            <circle cx="22" cy="20.5" r="1" fill="#FFFFFF"/>
+            <circle cx="34" cy="20.5" r="1" fill="#FFFFFF"/>
+            <ellipse cx="17" cy="27" rx="2.5" ry="1.5" fill="#F87171" opacity="0.6"/>
+            <ellipse cx="37" cy="27" rx="2.5" ry="1.5" fill="#F87171" opacity="0.6"/>
+            <path d="M24 26C25.5 28.5 28.5 28.5 30 26" stroke="#1E2923" stroke-width="2" stroke-linecap="round"/>
+            <!-- Mini Toga Cap -->
+            <path d="M27 2L15 6L27 10L39 6L27 2Z" fill="#1E2923"/>
+            <polygon points="27,10 27,13 25,12 25,9" fill="#FACC15"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">PKU MUI</span>
+          <span class="brand-sub">Research OS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Menu Navigasi Utama">
+        <a href="#quick-start" class="nav-link">Panduan</a>
+        <a href="#metode" class="nav-link">Metode</a>
+        <a href="#struktur-folder" class="nav-link">Research OS</a>
+        <a href="#copy-prompts-section" class="nav-link">Prompt AI</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <!-- Nav CTA -->
+      <div class="nav-right">
+        <button id="btn-nav-start" class="btn btn-mint btn-nav">
+          <span>Mulai 🚀</span>
+        </button>
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-nav-drawer" class="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="#quick-start" class="mobile-nav-link">👣 Langkah Kilat</a>
+        <a href="#metode" class="mobile-nav-link">🎯 Pilih Metode</a>
+        <a href="#copy-prompts-section" class="mobile-nav-link">🤖 Prompt ChatGPT</a>
+        <a href="#struktur-folder" class="mobile-nav-link">🧰 Peralatan Research OS</a>
+        <a href="#faq" class="mobile-nav-link">❓ Tanya Jawab</a>
+        <a href="#integritas" class="mobile-nav-link">⚠️ Etika Riset</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <button id="btn-mobile-start" class="btn btn-mint btn-full">
+          <span>Mulai Research Setup 🚀</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION: CUTE ACADEMIC PRODUCTIVITY -->
+    <section class="hero-section" id="hero">
+      <!-- Playful floating stickers & pastel blobs -->
+      <div class="pastel-blob blob-mint"></div>
+      <div class="pastel-blob blob-butter"></div>
+      <div class="pastel-blob blob-lavender"></div>
+
+      <!-- Floating Stickers -->
+      <div class="sticker sticker-1 float-anim-1">✨</div>
+      <div class="sticker sticker-2 float-anim-2">📚</div>
+      <div class="sticker sticker-3 float-anim-3">💡</div>
+      <div class="sticker sticker-4 float-anim-1">📊</div>
+      <div class="sticker sticker-5 float-anim-2">📝</div>
+
+      <div class="container hero-container">
+        
+        <!-- Hero Left Column -->
+        <div class="hero-content">
+          <div class="hero-badge-group">
+            <span class="badge badge-academic">
+              🎓 PKU MUI JAKARTA • ANGKATAN 19
+            </span>
+          </div>
+
+          <h1 class="hero-headline">
+            Tesis nggak harus bikin <span class="highlight-wobble">pusing.</span> 😌
+          </h1>
+
+          <p class="hero-subheadline">
+            <strong>Research OS</strong> bantu kamu menjalani proses tesis dari pilih metode sampai workflow penelitian dengan lebih terarah dan santai bersama AI.
+          </p>
+
+          <div class="hero-actions">
+            <button id="hero-btn-start" class="btn btn-mint btn-lg btn-chunky">
+              <span>Mulai Research Setup 🚀</span>
+            </button>
+            <a href="#quick-start" class="btn btn-soft-cream btn-lg btn-chunky">
+              <span>Lihat Cara Kerjanya</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Micro Highlights -->
+          <div class="hero-pill-highlights">
+            <div class="cute-pill-tag">
+              <span class="pill-icon">⚡</span>
+              <span>Workflow AI Step-by-Step</span>
+            </div>
+            <div class="cute-pill-tag">
+              <span class="pill-icon">📂</span>
+              <span>Template .md Siap Upload</span>
+            </div>
+            <div class="cute-pill-tag">
+              <span class="pill-icon">🔒</span>
+              <span>Privasi Lokal 100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Cute Big Riset Buddy Mascot -->
+        <div class="hero-visual">
+          <div class="mascot-stage-card">
+            
+            <!-- Speech Bubble -->
+            <div class="speech-bubble-hero float-bubble">
+              <span class="bubble-text">“Mulai dari pilih metode dulu, yuk! 👀”</span>
+              <div class="bubble-tail"></div>
+            </div>
+
+            <!-- Big Vector Mascot: Riset Buddy (Waving & Smiling) -->
+            <div class="mascot-svg-wrapper">
+              <svg class="mascot-svg" width="280" height="280" viewBox="0 0 280 280" fill="none">
+                <!-- Shadow -->
+                <ellipse cx="140" cy="255" rx="75" ry="14" fill="#E2E8F0" opacity="0.8"/>
+                
+                <!-- Feet -->
+                <rect x="105" y="230" width="26" height="24" rx="12" fill="#FBBF24" stroke="#1E2923" stroke-width="3"/>
+                <rect x="149" y="230" width="26" height="24" rx="12" fill="#FBBF24" stroke="#1E2923" stroke-width="3"/>
+                
+                <!-- Main Body: Cute Research Book/Folder -->
+                <rect x="65" y="60" width="150" height="180" rx="34" fill="#4ADE80" stroke="#1E2923" stroke-width="4"/>
+                
+                <!-- Book Spine / Inner Color Block -->
+                <path d="M92 62V238" stroke="#22C55E" stroke-width="6" stroke-linecap="round"/>
+                <rect x="102" y="78" width="96" height="144" rx="20" fill="#DCFCE7"/>
+
+                <!-- Cute Left Arm (Resting on side) -->
+                <path d="M66 145 C45 155, 45 180, 68 185" stroke="#1E2923" stroke-width="4" stroke-linecap="round" fill="#4ADE80"/>
+
+                <!-- Cute Right Arm (Waving!) -->
+                <g class="waving-arm-group">
+                  <path d="M213 140 C235 125, 245 100, 235 85 C225 75, 215 95, 210 115" stroke="#1E2923" stroke-width="4" stroke-linecap="round" fill="#4ADE80"/>
+                  <!-- Hand/Paw -->
+                  <circle cx="236" cy="84" r="10" fill="#FBBF24" stroke="#1E2923" stroke-width="3"/>
+                  <!-- Sparkle near hand -->
+                  <path d="M255 70L258 75L263 78L258 81L255 86L252 81L247 78L252 75Z" fill="#FACC15"/>
+                </g>
+
+                <!-- Face Elements -->
+                <!-- Big Anime Cute Eyes -->
+                <g class="eyes-group">
+                  <!-- Left Eye -->
+                  <ellipse cx="128" cy="132" rx="10" ry="14" fill="#1E2923"/>
+                  <circle cx="132" cy="127" r="4.5" fill="#FFFFFF"/>
+                  <circle cx="125" cy="138" r="2" fill="#FFFFFF"/>
+
+                  <!-- Right Eye (Winking or Wide Happy) -->
+                  <ellipse cx="172" cy="132" rx="10" ry="14" fill="#1E2923"/>
+                  <circle cx="176" cy="127" r="4.5" fill="#FFFFFF"/>
+                  <circle cx="169" cy="138" r="2" fill="#FFFFFF"/>
+                </g>
+
+                <!-- Blush Cheeks -->
+                <ellipse cx="112" cy="148" rx="9" ry="5.5" fill="#F87171" opacity="0.65"/>
+                <ellipse cx="188" cy="148" rx="9" ry="5.5" fill="#F87171" opacity="0.65"/>
+
+                <!-- Happy Cute Smile -->
+                <path d="M142 146 C144 158, 156 158, 158 146" stroke="#1E2923" stroke-width="3.5" stroke-linecap="round" fill="#F87171"/>
+
+                <!-- Cute Toga / Graduate Hat on Head -->
+                <g transform="translate(10, -8)">
+                  <polygon points="135,32 80,48 135,64 190,48" fill="#1E2923" stroke="#1E2923" stroke-width="2"/>
+                  <path d="M110 57C110 65 160 65 160 57" fill="#1E2923"/>
+                  <!-- Gold Tassel -->
+                  <circle cx="135" cy="48" r="3.5" fill="#FACC15"/>
+                  <path d="M135 48 C145 52, 152 64, 152 72" stroke="#FACC15" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="152" cy="74" r="3" fill="#F59E0B"/>
+                </g>
+
+                <!-- Mini Sticky Note on Body -->
+                <rect x="114" y="172" width="70" height="34" rx="8" fill="#FEF08A" stroke="#1E2923" stroke-width="2" transform="rotate(-3 149 189)"/>
+                <line x1="122" y1="184" x2="174" y2="181" stroke="#CA8A04" stroke-width="2" stroke-linecap="round"/>
+                <line x1="122" y1="193" x2="160" y2="190" stroke="#CA8A04" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Floating Micro Cards -->
+            <div class="mini-floating-chip chip-left">
+              <span>🌱 Bab 1 Terarah</span>
+            </div>
+            <div class="mini-floating-chip chip-right">
+              <span>🤖 Prompt Ready</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION QUICK START: PLAYFUL ROADMAP -->
+    <section class="section quickstart-section" id="quick-start">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag-pill">
+            <span>ALUR PENELITIAN</span>
+          </div>
+          <h2 class="section-title">Cuma butuh beberapa langkah 👣</h2>
+          <p class="section-subtitle">Ikuti peta jalan santai ini untuk mulai menyusun tesis bersama Research OS & AI.</p>
+        </div>
+
+        <!-- 5-Step Journey Horizontal/Vertical Roadmap -->
+        <div class="journey-roadmap-container">
+          <div class="journey-track-line"></div>
+          
+          <div class="journey-cards-grid">
+            
+            <!-- Step 1 -->
+            <div class="journey-card">
+              <div class="journey-badge">1</div>
+              <div class="journey-icon-wrap bg-mint-soft">
+                <span>🎯</span>
+              </div>
+              <h3 class="journey-step-title">Pilih metode</h3>
+              <p class="journey-step-desc">Tentukan pendekatan: <strong>Kualitatif</strong>, <strong>Kuantitatif</strong>, atau <strong>Mixed Methods</strong>.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-card">
+              <div class="journey-badge">2</div>
+              <div class="journey-icon-wrap bg-butter-soft">
+                <span>📦</span>
+              </div>
+              <h3 class="journey-step-title">Ambil Research OS</h3>
+              <p class="journey-step-desc">Buka folder Google Drive dan download file <code>.md</code> sesuai metode yang kamu pilih.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-card">
+              <div class="journey-badge">3</div>
+              <div class="journey-icon-wrap bg-sky-soft">
+                <span>🤖</span>
+              </div>
+              <h3 class="journey-step-title">Upload ke ChatGPT</h3>
+              <p class="journey-step-desc">Buka percakapan baru, lalu upload file <code>.md</code> sebagai pedoman kerja AI.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-card">
+              <div class="journey-badge">4</div>
+              <div class="journey-icon-wrap bg-lavender-soft">
+                <span>🧠</span>
+              </div>
+              <h3 class="journey-step-title">Mulai Manifest</h3>
+              <p class="journey-step-desc">Kirim prompt aktivasi & manifest agar AI mempelajari detail topik penelitianmu.</p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="journey-card">
+              <div class="journey-badge">5</div>
+              <div class="journey-icon-wrap bg-peach-soft">
+                <span>🚀</span>
+              </div>
+              <h3 class="journey-step-title">Kerjakan tesis</h3>
+              <p class="journey-step-desc">Ikuti alur Bab demi Bab secara sistematis sampai tesis selesai dengan rapi.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION PILIH METODE PENELITIAN (3 CUTE THEMED CARDS) -->
+    <section class="section metode-section" id="metode">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag-pill tag-butter">
+            <span>PILIH JALUR RISET</span>
+          </div>
+          <h2 class="section-title">Pilih Metode Penelitianmu 🎯</h2>
+          <p class="section-subtitle">Pilih metode yang kamu pakai. Kami siapkan paket Research OS yang paling cocok buatmu.</p>
+        </div>
+
+        <!-- 3 Distinct Method Cards -->
+        <div class="metode-cards-grid">
+          
+          <!-- CARD 1 — KUALITATIF (Mint Green Theme) -->
+          <div class="metode-card-cute theme-kualitatif" id="card-qualitative">
+            <div class="card-character-badge">
+              <div class="badge-role-tag">TEAM CERITA & MAKNA</div>
+              <div class="mini-mascot-sticker">🔎</div>
+            </div>
+            
+            <div class="metode-card-header">
+              <div class="metode-big-icon bg-mint-bubble">💬</div>
+              <h3 class="metode-name">Kualitatif</h3>
+            </div>
+            
+            <p class="metode-desc-cute">
+              Cocok buat kamu yang banyak bermain dengan wawancara mendalam, pengalaman manusia, observasi, studi kasus, fenomenologi, dan pemaknaan.
+            </p>
+
+            <div class="metode-tags-list">
+              <span>Wawancara</span>
+              <span>Studi Kasus</span>
+              <span>Fenomenologi</span>
+              <span>Etnografi</span>
+            </div>
+
+            <button class="btn btn-mint btn-full btn-chunky btn-select-method" data-method="qualitative" data-name="Kualitatif">
+              <span>Pilih Kualitatif →</span>
+            </button>
+          </div>
+
+          <!-- CARD 2 — KUANTITATIF (Pastel Sky Blue Theme) -->
+          <div class="metode-card-cute theme-kuantitatif" id="card-quantitative">
+            <div class="card-character-badge">
+              <div class="badge-role-tag">TEAM ANGKA</div>
+              <div class="mini-mascot-sticker">📊</div>
+            </div>
+            
+            <div class="metode-card-header">
+              <div class="metode-big-icon bg-blue-bubble">📈</div>
+              <h3 class="metode-name">Kuantitatif</h3>
+            </div>
+            
+            <p class="metode-desc-cute">
+              Variabel, data numerik, statistik, kuesioner, regresi, SEM, dan pengujian hipotesis adalah teman terbaik perjalanan risetmu.
+            </p>
+
+            <div class="metode-tags-list">
+              <span>Survei / Angket</span>
+              <span>Hipotesis</span>
+              <span>Statistik / SEM</span>
+              <span>Regresi</span>
+            </div>
+
+            <button class="btn btn-sky btn-full btn-chunky btn-select-method" data-method="quantitative" data-name="Kuantitatif">
+              <span>Pilih Kuantitatif →</span>
+            </button>
+          </div>
+
+          <!-- CARD 3 — MIXED METHODS (Lavender Theme) -->
+          <div class="metode-card-cute theme-mixed" id="card-mixed">
+            <div class="card-character-badge">
+              <div class="badge-role-tag">TEAM KOMBINASI</div>
+              <div class="mini-mascot-sticker">🧩</div>
+            </div>
+            
+            <div class="metode-card-header">
+              <div class="metode-big-icon bg-lavender-bubble">🔮</div>
+              <h3 class="metode-name">Mixed Methods</h3>
+            </div>
+            
+            <p class="metode-desc-cute">
+              Kalau satu metode belum cukup, gabungkan kekuatan data statistik dan kedalaman cerita wawancara dalam satu desain komprehensif.
+            </p>
+
+            <div class="metode-tags-list">
+              <span>Kual + Kuan</span>
+              <span>Triangulasi</span>
+              <span>Sequential</span>
+              <span>Komprehensif</span>
+            </div>
+
+            <button class="btn btn-lavender btn-full btn-chunky btn-select-method" data-method="mixedMethods" data-name="Mixed Methods">
+              <span>Pilih Mixed Methods →</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Cute Help Banner -->
+        <div class="cute-help-banner">
+          <div class="help-buddy-icon">🤔</div>
+          <div class="help-text-block">
+            <strong>Masih bingung nentuin metode penelitian?</strong>
+            <p>Tenang! Riset Buddy udah siapin panduan perbandingan metode biar kamu nggak salah pilih di awal.</p>
+          </div>
+          <button id="btn-read-method-guide-direct" class="btn btn-sm btn-soft-cream btn-chunky">
+            <span>Baca Panduan Metode (PDF) 📄</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION COPY PROMPT: CHATGPT MESSAGE BUBBLE INTERFACE -->
+    <section class="section copy-prompts-section" id="copy-prompts-section">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag-pill tag-mint">
+            <span>PROMPT INTEGRASI AI</span>
+          </div>
+          <h2 class="section-title">Tinggal copy, terus kirim ke ChatGPT 🤖</h2>
+          <p class="section-subtitle">Gunakan dua prompt utama ini setelah mengunggah file <code>.md</code> ke ChatGPT.</p>
+        </div>
+
+        <div class="chat-mockup-wrapper">
+          <!-- ChatGPT Header Bar -->
+          <div class="chat-mockup-header">
+            <div class="chat-header-user">
+              <div class="ai-avatar">🤖</div>
+              <div>
+                <strong>ChatGPT 4o • Research OS Mode</strong>
+                <small>Pedoman Tesis PKU MUI Jakarta</small>
+              </div>
+            </div>
+            <span class="ready-pill-indicator">🟢 AI Siap Menerima</span>
+          </div>
+
+          <!-- Chat Messages Body -->
+          <div class="chat-mockup-body">
+            
+            <!-- Message Bubble 1 -->
+            <div class="chat-row user-row">
+              <div class="chat-avatar-user">🎓</div>
+              <div class="chat-bubble user-bubble">
+                <div class="bubble-tag">LANGKAH 1 — AKTIVASI SKILL</div>
+                <div class="bubble-prompt-content">
+                  <code>Pelajari skill ini dan gunakan sebagai pedoman tesis saya.</code>
+                </div>
+                <div class="bubble-action-bar">
+                  <button class="btn btn-sm btn-copy-chat" data-copy="Pelajari skill ini dan gunakan sebagai pedoman tesis saya.">
+                    <span>📋 Copy Prompt</span>
+                  </button>
+                  <span class="copy-hint-text">Klik untuk salin</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Reply simulation -->
+            <div class="chat-row ai-row">
+              <div class="ai-avatar-small">🤖</div>
+              <div class="chat-bubble ai-bubble">
+                <p>Siap! Saya sudah mempelajari seluruh pedoman Research OS V8 ini. Silakan ketik perintah berikutnya untuk memulai penyusunan manifest tesis Anda.</p>
+              </div>
+            </div>
+
+            <!-- Message Bubble 2 -->
+            <div class="chat-row user-row">
+              <div class="chat-avatar-user">🎓</div>
+              <div class="chat-bubble user-bubble">
+                <div class="bubble-tag">LANGKAH 2 — RESEARCH MANIFEST</div>
+                <div class="bubble-prompt-content">
+                  <code>Mulai Research Project Manifest.</code>
+                </div>
+                <div class="bubble-action-bar">
+                  <button class="btn btn-sm btn-copy-chat" data-copy="Mulai Research Project Manifest.">
+                    <span>📋 Copy Prompt</span>
+                  </button>
+                  <span class="copy-hint-text">Klik untuk salin</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION PERALATAN RESEARCH OS (CUTE LIBRARY / ACCORDION) -->
+    <section class="section folder-section" id="struktur-folder">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag-pill tag-lavender">
+            <span>REPOSITORI BERKAS</span>
+          </div>
+          <h2 class="section-title">Peralatan Tesis Kamu 🧰</h2>
+          <p class="section-subtitle">Seluruh folder, modul pedoman, dan template siap pakai di Google Drive.</p>
+        </div>
+
+        <div class="folder-library-card">
+          <!-- Library Top Bar -->
+          <div class="library-header-bar">
+            <div class="lib-title-group">
+              <span class="lib-big-icon">📁</span>
+              <div>
+                <h3>UMJ RESEARCH OS V8</h3>
+                <p>Google Drive Cloud Repository</p>
+              </div>
+            </div>
+            <a href="https://drive.google.com/drive/folders/10zOPPr7C6CVFRFO1phvmvvst295w3Dc2?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-soft-cream btn-chunky">
+              <span>Buka Root Drive ↗</span>
+            </a>
+          </div>
+
+          <!-- Accordion Folders -->
+          <div class="folder-accordion-list">
+            
+            <!-- Folder 00 -->
+            <div class="accordion-item open">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="true">
+                <div class="acc-title-left">
+                  <span class="acc-icon">⭐</span>
+                  <div>
+                    <strong>00 — Mulai dari Sini</strong>
+                    <span class="acc-subtitle-tag">“Kalau bingung, buka ini dulu.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-mint btn-direct-link" data-link-key="startHere" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Folder ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <div class="file-list-cute">
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-pdf">PDF</span>
+                    <span class="file-title">📄 PANDUAN PENGGUNAAN V8.pdf</span>
+                    <span class="file-pill-desc">Pedoman Umum</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-pdf">PDF</span>
+                    <span class="file-title">📄 BACA DULU - PILIH METODE PENELITIAN.pdf</span>
+                    <span class="file-pill-desc">Panduan Metode</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-pdf">PDF</span>
+                    <span class="file-title">📄 FAQ & MASALAH UMUM.pdf</span>
+                    <span class="file-pill-desc">Solusi Cepat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder 01 — Kualitatif -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">🟢</span>
+                  <div>
+                    <strong>01 — Kualitatif</strong>
+                    <span class="acc-subtitle-tag">“Cerita, pengalaman, dan makna.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-mint btn-direct-link" data-link-key="qualitative" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Kualitatif ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <div class="file-list-cute">
+                  <div class="file-card-item star-file">
+                    <span class="badge-ext ext-md">MD</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAL.md</span>
+                    <span class="file-star-tag">⭐️ Utama Upload AI</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-docx">DOCX</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAL.docx</span>
+                    <span class="file-pill-desc">Baca Manual Word</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-zip">ZIP</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAL.zip</span>
+                    <span class="file-pill-desc">Bundel Lengkap</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder 02 — Kuantitatif -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">🔵</span>
+                  <div>
+                    <strong>02 — Kuantitatif</strong>
+                    <span class="acc-subtitle-tag">“Data, variabel, dan statistik.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-sky btn-direct-link" data-link-key="quantitative" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Kuantitatif ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <div class="file-list-cute">
+                  <div class="file-card-item star-file">
+                    <span class="badge-ext ext-md">MD</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAN.md</span>
+                    <span class="file-star-tag">⭐️ Utama Upload AI</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-docx">DOCX</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAN.docx</span>
+                    <span class="file-pill-desc">Baca Manual Word</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-zip">ZIP</span>
+                    <span class="file-title">UMJ-Research-OS-v8-QUAN.zip</span>
+                    <span class="file-pill-desc">Bundel Lengkap</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder 03 — Mixed Methods -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">🟣</span>
+                  <div>
+                    <strong>03 — Mixed Methods</strong>
+                    <span class="acc-subtitle-tag">“Gabungkan dua pendekatan.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-lavender btn-direct-link" data-link-key="mixedMethods" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Mixed Methods ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <div class="file-list-cute">
+                  <div class="file-card-item star-file">
+                    <span class="badge-ext ext-md">MD</span>
+                    <span class="file-title">UMJ-Research-OS-v8-MIX.md</span>
+                    <span class="file-star-tag">⭐️ Utama Upload AI</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-docx">DOCX</span>
+                    <span class="file-title">UMJ-Research-OS-v8-MIX.docx</span>
+                    <span class="file-pill-desc">Baca Manual Word</span>
+                  </div>
+                  <div class="file-card-item">
+                    <span class="badge-ext ext-zip">ZIP</span>
+                    <span class="file-title">UMJ-Research-OS-v8-MIX.zip</span>
+                    <span class="file-pill-desc">Bundel Lengkap</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder 04 — Core UMJ -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">⚙️</span>
+                  <div>
+                    <strong>04 — Core UMJ</strong>
+                    <span class="acc-subtitle-tag">“Fondasi utama Research OS.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-soft-cream btn-direct-link" data-link-key="core" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Core ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <p class="folder-cute-desc">Framework aturan tesis, struktur Bab standar, pedoman sitasi, dan framework penulisan ilmiah.</p>
+              </div>
+            </div>
+
+            <!-- Folder 05 — Full Version -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">🧠</span>
+                  <div>
+                    <strong>05 — Full Version</strong>
+                    <span class="acc-subtitle-tag">“Semua tools dalam satu tempat.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-soft-cream btn-direct-link" data-link-key="fullVersion" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Buka Full Version ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <p class="folder-cute-desc">Paket super lengkap berisi seluruh metodologi, prompt engineering master, dan repositori template.</p>
+              </div>
+            </div>
+
+            <!-- Folder 06 — Contoh Penggunaan -->
+            <div class="accordion-item">
+              <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+                <div class="acc-title-left">
+                  <span class="acc-icon">📚</span>
+                  <div>
+                    <strong>06 — Contoh Penggunaan</strong>
+                    <span class="acc-subtitle-tag">“Lihat bagaimana workflow dipakai.”</span>
+                  </div>
+                </div>
+                <div class="acc-actions">
+                  <a href="#" class="btn btn-xs btn-soft-cream btn-direct-link" data-link-key="examples" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Lihat Contoh ↗</a>
+                  <span class="acc-chevron">▼</span>
+                </div>
+              </div>
+              <div class="accordion-content">
+                <p class="folder-cute-desc">Sampel transkrip percakapan AI, contoh manifest riset, serta studi kasus tesis mahasiswa yang telah selesai.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION RESEARCH INTEGRITY NOTICE -->
+    <section class="section integrity-section" id="integritas">
+      <div class="container">
+        
+        <div class="cute-integrity-card">
+          <div class="integrity-header-cute">
+            <div class="mascot-warning-icon">⚠️</div>
+            <div>
+              <h3 class="integrity-title-cute">Research Integrity & Etika Akademik</h3>
+              <p class="integrity-sub-cute">AI adalah asisten pintar, tapi kamu adalah nahkoda penelitiannya! 🧭</p>
+            </div>
+          </div>
+          
+          <div class="integrity-body-cute">
+            <p class="integrity-lead">
+              <strong>Research OS adalah alat bantu penelitian. Gunakan AI secara bijak dan bertanggung jawab.</strong>
+            </p>
+            <p>
+              Pastikan setiap elemen akademik berikut <strong>diverifikasi dan divalidasi sendiri</strong> oleh mahasiswa:
+            </p>
+            
+            <div class="integrity-badges-grid">
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Sumber rujukan & kitab/literatur</span>
+              </div>
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Kutipan teks asli</span>
+              </div>
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Data primer/lapangan</span>
+              </div>
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Landasan teori</span>
+              </div>
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Jurnal ilmiah bereputasi</span>
+              </div>
+              <div class="int-pill">
+                <span class="int-check-dot">✓</span>
+                <span>Hasil analisis & interpretasi</span>
+              </div>
+            </div>
+
+            <div class="integrity-advisor-note">
+              <span class="advisor-icon">📌</span>
+              <span><strong>Catatan Penting:</strong> AI tidak menggantikan dosen pembimbing tesis. Tetap konsultasikan setiap progres dengan dosen pembimbing Anda ya!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Assurance Card -->
+        <div class="cute-privacy-card">
+          <div class="privacy-icon-cute">🔒</div>
+          <div class="privacy-text-cute">
+            <strong>Privasi & Keamanan Terjamin</strong>
+            <p>Data Research Setup hanya disimpan di browser perangkatmu (localStorage) dan tidak pernah dikirim ke server manapun.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="container faq-container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag-pill tag-peach">
+            <span>TANYA JAWAB</span>
+          </div>
+          <h2 class="section-title">Frequently Asked Questions ❓</h2>
+          <p class="section-subtitle">Pertanyaan santai yang sering ditanyakan seputar Research OS.</p>
+        </div>
+
+        <div class="faq-list-cute">
+          
+          <!-- Q1 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Research OS ini untuk siapa?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Khusus untuk mahasiswa PKU MUI Jakarta Angkatan 19 yang sedang menyusun tesis dan ingin alur kerja penelitian yang rapi, terarah, dan terbantu oleh AI.</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Apakah saya harus menggunakan ChatGPT?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Research OS dioptimalkan untuk ChatGPT (terutama GPT-4o / ChatGPT Plus). Namun, prompt dan alurnya juga bisa dipakai di Claude, Gemini, atau platform LLM lainnya.</p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>File mana yang harus saya download?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Utamakan file <strong>.md</strong> (Markdown) sesuai metode penelitianmu (contoh: <code>UMJ-Research-OS-v8-QUAL.md</code> untuk Kualitatif). File inilah yang di-upload ke chat AI.</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Apa fungsi file .docx?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Sebagai versi dokumen Microsoft Word yang lebih nyaman dibaca manual, dipelajari secara santai, atau dicetak.</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Apa fungsi file .zip?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Berisi seluruh arsip lengkap Research OS, template pendukung, dan bundel modul dalam satu paket unduhan.</p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Bagaimana jika saya belum tahu metode penelitian?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p>Buka folder <code>00 — MULAI DARI SINI</code> dan baca dokumen <strong>BACA DULU — PILIH METODE PENELITIAN.pdf</strong> yang mengupas tuntas cara memilih metode riset.</p>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="faq-item-cute">
+            <button class="faq-question-cute" aria-expanded="false">
+              <span>Apakah AI akan langsung membuat tesis?</span>
+              <span class="faq-plus-icon">+</span>
+            </button>
+            <div class="faq-answer-cute">
+              <p><strong>Tentu tidak.</strong> Research OS adalah navigator workflow dan pendamping metodologis. Mahasiswa tetap memegang tanggung jawab penuh atas analisis, data, argumentasi ilmiah, dan orisinalitas isi tesis.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION FINAL CTA -->
+    <section class="section final-cta-section">
+      <div class="container">
+        <div class="final-cta-card-cute">
+          
+          <div class="cta-mascot-badge">✨ 🌱 ✨</div>
+          <h2 class="final-cta-title-cute">Siap mulai tesismu? 🚀</h2>
+          <p class="final-cta-desc-cute">
+            Pilih metodemu sekarang dan rasakan asyiknya menyusun tesis dengan Research OS bersama Riset Buddy.
+          </p>
+          
+          <div class="final-cta-btn-wrap">
+            <button id="btn-final-start" class="btn btn-butter btn-xl btn-chunky">
+              <span>Mulai Research Setup 🚀</span>
+            </button>
+          </div>
+
+          <div class="final-meta-tag">
+            <span>PKU MUI Jakarta • Angkatan 19</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CUTE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand-col">
+        <div class="footer-logo-row">
+          <span class="footer-brand-name">PKU MUI JAKARTA</span>
+          <span class="footer-badge-pill">Angkatan 19</span>
+        </div>
+        <p class="footer-desc">
+          Portal pendamping dan workflow pintar penyusunan tesis mahasiswa Program Kader Ulama (PKU) MUI DKI Jakarta.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#quick-start">Panduan</a></li>
+          <li><a href="#metode">Pilih Metode</a></li>
+          <li><a href="#struktur-folder">Research OS</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#integritas">Research Integrity</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-meta-col">
+        <h4>Akses Langsung</h4>
+        <div class="quick-drive-buttons">
+          <a href="#" class="btn-footer-link btn-direct-link" data-link-key="startHere" target="_blank" rel="noopener noreferrer">⭐ Folder Mulai Dari Sini</a>
+          <a href="#" class="btn-footer-link btn-direct-link" data-link-key="fullVersion" target="_blank" rel="noopener noreferrer">🧠 Full Version OS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-flex">
+        <p>&copy; 2026 PKU MUI DKI Jakarta — Angkatan 19. Crafted with 💚 & AI.</p>
+        <p class="privacy-hint">🔒 Penyimpanan Lokal Browser (localStorage)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================== -->
+  <!-- MODAL / DRAWER: CUTE INTERACTIVE ONBOARDING RESEARCH SETUP     -->
+  <!-- ============================================================== -->
+  <div id="setup-modal-overlay" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card-cute">
+      
+      <!-- Modal Header -->
+      <div class="modal-header-cute">
+        <div class="modal-header-left">
+          <span class="modal-tag-pill">RESEARCH SETUP</span>
+          <h3 class="modal-main-title">Yuk kenalan sama penelitianmu 👋</h3>
+          <p class="modal-sub-title">Jawab beberapa pertanyaan singkat dulu agar panduan Research OS pas dengan kebutuhanmu.</p>
+        </div>
+        <button id="modal-close-btn" class="modal-close-cute" aria-label="Tutup Setup Modal">✕</button>
+      </div>
+
+      <!-- Cute Progress Indicator: Leaves / Dots -->
+      <div class="modal-cute-progress">
+        <div class="cute-progress-track">
+          <div id="step-progress-fill" class="cute-progress-fill" style="width: 25%;"></div>
+        </div>
+        <div class="cute-step-indicator-row">
+          <span id="step-dots-display" class="step-dots-leaves">🍃 ● ● ● ●</span>
+          <span id="step-count-label" class="step-label-pill">1 / 4</span>
+        </div>
+      </div>
+
+      <!-- Loading State Overlay (Dynamic with Mascot) -->
+      <div id="modal-loading-state" class="modal-loading-screen hidden">
+        <div class="loading-mascot-anim">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" class="bounce-anim">
+            <rect x="25" y="25" width="70" height="75" rx="16" fill="#4ADE80" stroke="#1E2923" stroke-width="3"/>
+            <rect x="42" y="35" width="45" height="55" rx="8" fill="#DCFCE7"/>
+            <circle cx="50" cy="55" r="4" fill="#1E2923"/>
+            <circle cx="70" cy="55" r="4" fill="#1E2923"/>
+            <path d="M57 65C60 69 64 69 67 65" stroke="#1E2923" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="43" cy="62" rx="4" ry="2.5" fill="#F87171" opacity="0.6"/>
+            <ellipse cx="77" cy="62" rx="4" ry="2.5" fill="#F87171" opacity="0.6"/>
+          </svg>
+        </div>
+        <h4 id="loading-dynamic-text" class="loading-title">Bentar, lagi nyari foldernya 🔎</h4>
+        <p class="loading-sub">Riset Buddy lagi bongkar folder Research OS buat kamu...</p>
+      </div>
+
+      <!-- Modal Body Multi-Step Content -->
+      <div class="modal-body-cute" id="modal-steps-container">
+        
+        <!-- STEP 1: NAMA -->
+        <div class="setup-step active" data-step="1">
+          <div class="mascot-speech-row">
+            <div class="speech-mini-mascot">👋</div>
+            <div class="speech-bubble-step">
+              <strong>“Pertama, siapa nama kamu?”</strong>
+            </div>
+          </div>
+          
+          <div class="form-group-cute">
+            <label for="input-user-name" class="input-label-cute">Nama Lengkap Mahasiswa</label>
+            <input type="text" id="input-user-name" class="form-input-cute" placeholder="Contoh: Ahmad Fulan" autocomplete="name" required>
+            <div id="err-step-1" class="field-error-cute hidden">Hmm... isi nama kamu dulu ya! 😊</div>
+          </div>
+        </div>
+
+        <!-- STEP 2: TOPIK / JUDUL -->
+        <div class="setup-step" data-step="2">
+          <div class="mascot-speech-row">
+            <div class="speech-mini-mascot">👀</div>
+            <div class="speech-bubble-step">
+              <strong>“Sekarang ceritain sedikit soal tesis kamu 👀”</strong>
+            </div>
+          </div>
+          
+          <div class="form-group-cute">
+            <div class="label-row-action-cute">
+              <label for="input-user-topic" class="input-label-cute">Topik atau Rencana Judul</label>
+              <button type="button" id="btn-quick-no-title" class="btn-pill-helper">⚡ Tulis 'Belum menentukan judul'</button>
+            </div>
+            <textarea id="input-user-topic" class="form-textarea-cute" rows="3" placeholder="Contoh: Strategi pemberdayaan ekonomi masyarakat berbasis masjid di DKI Jakarta..." required></textarea>
+            <div id="err-step-2" class="field-error-cute hidden">Tulis topik penelitianmu atau klik tombol di atas ya!</div>
+          </div>
+        </div>
+
+        <!-- STEP 3: TAHAP PENELITIAN -->
+        <div class="setup-step" data-step="3">
+          <div class="mascot-speech-row">
+            <div class="speech-mini-mascot">🧭</div>
+            <div class="speech-bubble-step">
+              <strong>“Kamu sekarang udah sampai mana?”</strong>
+            </div>
+          </div>
+          
+          <div class="stage-pills-grid">
+            
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Baru menentukan topik">
+              <span class="stage-pill-icon">🌱</span>
+              <span class="stage-pill-text">Baru menentukan topik</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun judul">
+              <span class="stage-pill-icon">📝</span>
+              <span class="stage-pill-text">Sedang menyusun judul</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang membuat proposal">
+              <span class="stage-pill-icon">📄</span>
+              <span class="stage-pill-text">Sedang membuat proposal</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun BAB I">
+              <span class="stage-pill-icon">1️⃣</span>
+              <span class="stage-pill-text">Sedang menyusun BAB I</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun BAB II">
+              <span class="stage-pill-icon">2️⃣</span>
+              <span class="stage-pill-text">Sedang menyusun BAB II</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun BAB III">
+              <span class="stage-pill-icon">3️⃣</span>
+              <span class="stage-pill-text">Sedang menyusun BAB III</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang mengumpulkan data">
+              <span class="stage-pill-icon">📊</span>
+              <span class="stage-pill-text">Sedang mengumpulkan data</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menganalisis data">
+              <span class="stage-pill-icon">🔬</span>
+              <span class="stage-pill-text">Sedang menganalisis data</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun BAB IV">
+              <span class="stage-pill-icon">4️⃣</span>
+              <span class="stage-pill-text">Sedang menyusun BAB IV</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Sedang menyusun BAB V">
+              <span class="stage-pill-icon">5️⃣</span>
+              <span class="stage-pill-text">Sedang menyusun BAB V</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Revisi tesis">
+              <span class="stage-pill-icon">🔄</span>
+              <span class="stage-pill-text">Revisi tesis</span>
+            </label>
+
+            <label class="stage-pill-card">
+              <input type="radio" name="research_stage" value="Lainnya">
+              <span class="stage-pill-icon">✨</span>
+              <span class="stage-pill-text">Lainnya</span>
+            </label>
+
+          </div>
+          <div id="err-step-3" class="field-error-cute hidden">Pilih salah satu tahap kamu sekarang ya!</div>
+        </div>
+
+        <!-- STEP 4: KONFIRMASI METODE -->
+        <div class="setup-step" data-step="4">
+          <div class="mascot-speech-row">
+            <div class="speech-mini-mascot">🎯</div>
+            <div class="speech-bubble-step">
+              <strong>“Terakhir nih. Udah yakin sama metodenya?”</strong>
+            </div>
+          </div>
+
+          <div class="chosen-method-cute-badge">
+            <span>Metode pilihanmu:</span>
+            <strong id="modal-chosen-method-display">KUALITATIF</strong>
+          </div>
+
+          <div class="method-confirm-cute-grid">
+            <label class="confirm-cute-card" id="opt-sure">
+              <input type="radio" name="method_sure" value="sure">
+              <div class="confirm-card-inner">
+                <span class="confirm-cute-emoji">✅</span>
+                <strong>Ya, saya sudah yakin!</strong>
+                <small>Saya sudah paham arah dan instrumen metode ini.</small>
+              </div>
+            </label>
+
+            <label class="confirm-cute-card" id="opt-unsure">
+              <input type="radio" name="method_sure" value="unsure">
+              <div class="confirm-card-inner">
+                <span class="confirm-cute-emoji">🤔</span>
+                <strong>Belum yakin</strong>
+                <small>Masih agak ragu cocok atau nggak dengan topikku.</small>
+              </div>
+            </label>
+          </div>
+
+          <!-- Unsure Warning Alert Box -->
+          <div id="unsure-warning-box" class="unsure-cute-box hidden">
+            <div class="unsure-cute-content">
+              <div class="unsure-icon-cute">💡</div>
+              <div>
+                <strong>Tips dari Riset Buddy:</strong>
+                <p>Kalau masih ragu, yuk baca panduan memilih metode terlebih dahulu biar mantap melangkah!</p>
+              </div>
+            </div>
+            <a href="https://drive.google.com/drive/folders/10zOPPr7C6CVFRFO1phvmvvst295w3Dc2?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-butter btn-chunky">
+              <span>Baca Panduan Memilih Metode (PDF) 📄</span>
+            </a>
+          </div>
+
+          <div id="err-step-4" class="field-error-cute hidden">Pilih salah satu opsi keyakinan kamu dulu ya!</div>
+        </div>
+
+        <!-- STEP 5: SUCCESS SCREEN (CELEBRATION & CONFETTI) -->
+        <div class="setup-step" data-step="5">
+          <div class="success-celebration-card">
+            
+            <!-- Cheering Mascot -->
+            <div class="celebration-mascot-head">
+              <span class="party-emoji">🎉</span>
+              <div class="celebrate-avatar">
+                <svg width="70" height="70" viewBox="0 0 80 80" fill="none">
+                  <rect x="15" y="15" width="50" height="55" rx="14" fill="#4ADE80" stroke="#1E2923" stroke-width="2.5"/>
+                  <rect x="26" y="23" width="34" height="40" rx="8" fill="#DCFCE7"/>
+                  <circle cx="34" cy="38" r="3.5" fill="#1E2923"/>
+                  <circle cx="48" cy="38" r="3.5" fill="#1E2923"/>
+                  <path d="M38 46C41 50 45 50 48 46" stroke="#1E2923" stroke-width="2" stroke-linecap="round" fill="#F87171"/>
+                  <ellipse cx="28" cy="43" rx="3.5" ry="2" fill="#F87171" opacity="0.6"/>
+                  <ellipse cx="54" cy="43" rx="3.5" ry="2" fill="#F87171" opacity="0.6"/>
+                </svg>
+              </div>
+              <span class="party-emoji">✨</span>
+            </div>
+
+            <h3 class="success-headline">Yey! Setup kamu beres 🎉</h3>
+            <p class="success-subtext">
+              <strong id="conf-user-name" class="highlight-name">Ahmad</strong>, Research OS untuk penelitian <strong id="conf-method-highlight">Kualitatif</strong> kamu sudah siap digunakan!
+            </p>
+
+            <div class="success-summary-box">
+              <div class="summary-item-row">
+                <span class="s-label">Metode:</span>
+                <span class="s-val badge-cute-pill" id="conf-method-name">Kualitatif</span>
+              </div>
+              <div class="summary-item-row">
+                <span class="s-label">Tahap:</span>
+                <span class="s-val" id="conf-stage-name">Sedang membuat proposal</span>
+              </div>
+              <div class="summary-item-row">
+                <span class="s-label">Topik:</span>
+                <span class="s-val" id="conf-topic-name">Strategi pemberdayaan masyarakat...</span>
+              </div>
+            </div>
+
+            <!-- Speech Bubble on Success -->
+            <div class="success-speech-bubble">
+              <span>“Sekarang kita mulai perjalanan tesisnya!” 🚀</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="success-actions-wrap">
+              <button id="btn-open-drive-final" class="btn btn-mint btn-lg btn-full btn-chunky shadow-pop">
+                <span>Buka Research OS 🚀</span>
+              </button>
+              <button id="btn-edit-answers" class="btn btn-soft-cream btn-sm btn-full btn-chunky">
+                <span>Ubah Jawaban</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer (Navigation Buttons) -->
+      <div class="modal-footer-cute" id="modal-footer-nav">
+        <button type="button" id="modal-btn-prev" class="btn btn-soft-cream btn-chunky disabled" disabled>
+          ← Balik dulu
+        </button>
+        <button type="button" id="modal-btn-next" class="btn btn-mint btn-chunky">
+          <span>Lanjut yuk →</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION (CUTE BUBBLE) -->
+  <div id="toast-container" class="toast-container">
+    <div id="toast" class="toast-cute hidden">
+      <span class="toast-icon">✨</span>
+      <span id="toast-message" class="toast-text">Prompt berhasil disalin!</span>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
