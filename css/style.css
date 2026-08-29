@@ -2575,3 +2575,48 @@ code {
     display: none;
   }
 }
+
+/* ==========================================================================
+   OFFICIAL PKU LOGO STYLING
+   ========================================================================== */
+.brand-pku-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 0px rgba(30, 41, 35, 0.2));
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover .brand-pku-logo {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.hero-badge-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.wa-pku-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 0px rgba(30, 41, 35, 0.2));
+}
+
+.footer-pku-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 0px rgba(30, 41, 35, 0.2));
+  margin-right: 10px;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+}
+
