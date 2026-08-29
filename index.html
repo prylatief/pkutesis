@@ -1291,6 +1291,117 @@
     </div>
   </div>
 
+  <!-- ============================================================== -->
+  <!-- MODAL: POPUP BIMBINGAN WA GROUP (2-STEP FIRST VISIT & MINIMIZE) -->
+  <!-- ============================================================== -->
+  <div id="wa-group-modal-overlay" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card-cute wa-modal-card">
+      
+      <!-- Top Window Bar Controls (Cute Mac OS Style) -->
+      <div class="wa-modal-top-bar">
+        <div class="window-dot-group">
+          <button id="wa-modal-btn-close" class="window-dot dot-red" aria-label="Tutup Popup" title="Tutup">✕</button>
+          <button id="wa-modal-btn-minimize" class="window-dot dot-yellow" aria-label="Minimize Popup" title="Minimize">—</button>
+          <span class="window-dot dot-green"></span>
+        </div>
+        <span class="wa-bar-badge">💬 GRUP WA BIMBINGAN TESIS</span>
+      </div>
+
+      <!-- STEP 1: INITIAL POPUP (PAS PERTAMA MUKAK LINK WEB) -->
+      <div id="wa-popup-step-1" class="wa-popup-content">
+        <div class="wa-modal-header">
+          <div class="wa-mascot-avatar">
+            <span class="wa-avatar-emoji">🎓</span>
+            <span class="wa-badge-live">AKTIF</span>
+          </div>
+          <div class="wa-header-info">
+            <span class="modal-tag-pill tag-wa">BIMBINGAN & KONSULTASI TESIS</span>
+            <h3 class="wa-modal-title">Gabung Grup WA Bimbingan Tesis 🚀</h3>
+            <p class="wa-modal-subtitle">Konsultasi skill riset & dapatkan prompt AI eksklusif gratis!</p>
+          </div>
+        </div>
+
+        <div class="wa-modal-body">
+          <div class="wa-benefit-card">
+            <div class="benefit-item">
+              <span class="b-icon">🤖</span>
+              <div>
+                <strong>Bimbingan Skill & Prompt AI Tesis</strong>
+                <p>Diskusi dan dapatkan racikan prompt ChatGPT/Claude khusus untuk olah data & bikin latar belakang.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">💡</span>
+              <div>
+                <strong>Konsultasi Seputar Kendala Riset</strong>
+                <p>Tanya jawab seputar metode kualitatif, kuantitatif, maupun mixed methods.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">🤝</span>
+              <div>
+                <strong>Komunitas Positif & Saling Dukung</strong>
+                <p>Belajar bareng sesama mahasiswa PKU MUI Jakarta & peneliti riset lainnya.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wa-modal-actions">
+          <a id="wa-btn-join-1" href="https://chat.whatsapp.com/Lom0OoH4Yer7TzmkN7BqjM?s=sh&p=a&mlu=4" target="_blank" rel="noopener noreferrer" class="btn btn-mint btn-lg btn-full btn-chunky shadow-pop btn-wa-green">
+            <span>💬 Masuk / Gabung Grup WA Bimbingan 🚀</span>
+          </a>
+          <button id="wa-btn-skip-1" class="btn btn-soft-cream btn-sm btn-full btn-chunky btn-skip-wa">
+            <span>Minimize / Skip Dulu ⏩</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: RE-APPEAR POPUP (PAS USER KLIK MINIMIZE / SKIP / CLOSE PERTAMA KALI) -->
+      <div id="wa-popup-step-2" class="wa-popup-content hidden">
+        <div class="wa-modal-header wa-header-warning">
+          <div class="wa-mascot-avatar avatar-warning">
+            <span class="wa-avatar-emoji">⚠️</span>
+          </div>
+          <div class="wa-header-info">
+            <span class="modal-tag-pill tag-warning">POPUP 2 • TUNGGU DULU! 🚨</span>
+            <h3 class="wa-modal-title">Yakin Mau Skip Bimbingan Gratis Ini? 🥺</h3>
+            <p class="wa-modal-subtitle">Jangan lewatkan kesempatan konsultasi skill & prompt tesis bersama kami!</p>
+          </div>
+        </div>
+
+        <div class="wa-modal-body">
+          <div class="wa-warning-alert-box">
+            <div class="wa-alert-icon">💡</div>
+            <div class="wa-alert-text">
+              <strong>Mengapa Kamu Harus Masuk Grup Ini?</strong>
+              <p>Grup ini 100% GRATIS! Tempat kamu konsultasi langsung kalau bingung bikin prompt ChatGPT atau kendala analisis tesis. Yuk join sekarang sebelum masuk ke web!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wa-modal-actions">
+          <a id="wa-btn-join-2" href="https://chat.whatsapp.com/Lom0OoH4Yer7TzmkN7BqjM?s=sh&p=a&mlu=4" target="_blank" rel="noopener noreferrer" class="btn btn-mint btn-lg btn-full btn-chunky shadow-pop btn-wa-green">
+            <span>🚀 Ya, Saya Mau Gabung Grup WA Sekarang!</span>
+          </a>
+          <button id="wa-btn-skip-2" class="btn btn-soft-cream btn-sm btn-full btn-chunky">
+            <span>✕ Tetap Skip & Masuk ke Web</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING BUTTON UNTUK AKSES PERMANEN GRUP WA -->
+  <a id="wa-floating-btn" href="https://chat.whatsapp.com/Lom0OoH4Yer7TzmkN7BqjM?s=sh&p=a&mlu=4" target="_blank" rel="noopener noreferrer" class="wa-floating-badge" title="Gabung Grup WA Bimbingan Tesis">
+    <div class="wa-float-icon">💬</div>
+    <div class="wa-float-text">
+      <span class="wa-float-title">Grup WA Bimbingan</span>
+      <span class="wa-float-sub">Konsultasi Skill & Prompt</span>
+    </div>
+  </a>
+
   <!-- Application Logic -->
   <script src="js/app.js"></script>
 </body>

@@ -86,6 +86,7 @@
     initAccordions();
     initFaq();
     initMobileNav();
+    initWaModal();
   }
 
   // --- LOCAL STORAGE HANDLING ---
@@ -651,6 +652,93 @@
         if (textToCopy) {
           copyToClipboard(textToCopy, copyBtn);
         }
+      }
+    });
+  }
+
+  // --- WA GROUP GUIDANCE MODAL LOGIC (2-STEP VISIT & MINIMIZE) ---
+  const WA_MODAL_STORAGE_KEY = 'pku_wa_popup_status';
+  let waPopupStep = 1;
+
+  function initWaModal() {
+    const waOverlay = document.getElementById('wa-group-modal-overlay');
+    const waCard = waOverlay ? waOverlay.querySelector('.wa-modal-card') : null;
+    const waStep1 = document.getElementById('wa-popup-step-1');
+    const waStep2 = document.getElementById('wa-popup-step-2');
+
+    const btnClose = document.getElementById('wa-modal-btn-close');
+    const btnMinimize = document.getElementById('wa-modal-btn-minimize');
+    const btnJoin1 = document.getElementById('wa-btn-join-1');
+    const btnJoin2 = document.getElementById('wa-btn-join-2');
+    const btnSkip1 = document.getElementById('wa-btn-skip-1');
+    const btnSkip2 = document.getElementById('wa-btn-skip-2');
+
+    if (!waOverlay || !waStep1 || !waStep2) return;
+
+    // Check if user already completed or dismissed Popup #2 in this session
+    const status = sessionStorage.getItem(WA_MODAL_STORAGE_KEY);
+    if (status === 'completed' || status === 'dismissed') {
+      waOverlay.classList.add('hidden');
+      return;
+    }
+
+    // Auto-show Popup #1 when user enters the web link
+    waPopupStep = 1;
+    showStep(1);
+    waOverlay.classList.remove('hidden');
+
+    function showStep(step) {
+      waPopupStep = step;
+      if (step === 1) {
+        waStep1.classList.remove('hidden');
+        waStep2.classList.add('hidden');
+      } else {
+        waStep1.classList.add('hidden');
+        waStep2.classList.remove('hidden');
+        if (waCard) {
+          waCard.classList.remove('shake-anim');
+          void waCard.offsetWidth; // trigger reflow for animation restart
+          waCard.classList.add('shake-anim');
+        }
+      }
+    }
+
+    function handleDismissAttempt() {
+      if (waPopupStep === 1) {
+        // First skip/minimize/close attempt -> Show Popup #2 before entering web!
+        showStep(2);
+      } else {
+        // Second skip/minimize/close attempt -> Close modal & allow user into web
+        sessionStorage.setItem(WA_MODAL_STORAGE_KEY, 'dismissed');
+        waOverlay.classList.add('hidden');
+      }
+    }
+
+    function handleJoinGroup() {
+      sessionStorage.setItem(WA_MODAL_STORAGE_KEY, 'completed');
+      waOverlay.classList.add('hidden');
+    }
+
+    if (btnJoin1) btnJoin1.addEventListener('click', handleJoinGroup);
+    if (btnJoin2) btnJoin2.addEventListener('click', handleJoinGroup);
+
+    if (btnSkip1) btnSkip1.addEventListener('click', handleDismissAttempt);
+    if (btnSkip2) btnSkip2.addEventListener('click', handleDismissAttempt);
+
+    if (btnClose) btnClose.addEventListener('click', handleDismissAttempt);
+    if (btnMinimize) btnMinimize.addEventListener('click', handleDismissAttempt);
+
+    // Overlay background click
+    waOverlay.addEventListener('click', (e) => {
+      if (e.target === waOverlay) {
+        handleDismissAttempt();
+      }
+    });
+
+    // Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !waOverlay.classList.contains('hidden')) {
+        handleDismissAttempt();
       }
     });
   }
