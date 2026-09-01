@@ -87,7 +87,118 @@
     initFaq();
     initMobileNav();
     initWaModal();
+    initPasswordGate();
   }
+
+  // --- PASSWORD GATE (Academic Library) ---
+  function initPasswordGate() {
+    const CORRECT_PASSWORD = 'pkumui19';
+    const overlay = document.getElementById('password-gate-overlay');
+    const card = document.getElementById('pw-gate-card');
+    const closeBtn = document.getElementById('pw-gate-close');
+    const input = document.getElementById('pw-gate-input');
+    const submitBtn = document.getElementById('pw-submit-btn');
+    const errorMsg = document.getElementById('pw-error-msg');
+    const inputGroup = document.getElementById('pw-input-group');
+    const toggleVisBtn = document.getElementById('pw-toggle-vis');
+    const visIcon = document.getElementById('pw-vis-icon');
+    const targetSemLabel = document.getElementById('pw-target-sem');
+
+    if (!overlay) return;
+
+    let pendingUrl = '';
+
+    // Open modal when library buttons are clicked
+    document.querySelectorAll('.btn-library-access').forEach(btn => {
+      btn.addEventListener('click', () => {
+        pendingUrl = btn.getAttribute('data-drive-url') || '';
+        const semName = btn.getAttribute('data-sem') || 'Materi';
+        if (targetSemLabel) targetSemLabel.textContent = semName;
+
+        // Reset form state
+        if (input) input.value = '';
+        if (errorMsg) errorMsg.classList.add('hidden');
+        if (inputGroup) inputGroup.classList.remove('error-state');
+        card.classList.remove('shake');
+
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { if (input) input.focus(); }, 300);
+      });
+    });
+
+    // Close modal
+    function closePasswordGate() {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+      pendingUrl = '';
+      if (input) input.value = '';
+      if (errorMsg) errorMsg.classList.add('hidden');
+      if (inputGroup) inputGroup.classList.remove('error-state');
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closePasswordGate);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePasswordGate();
+    });
+
+    // Show/hide password toggle
+    if (toggleVisBtn && input && visIcon) {
+      toggleVisBtn.addEventListener('click', () => {
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        visIcon.textContent = isHidden ? '🙈' : '👁️';
+      });
+    }
+
+    // Validate password
+    function checkPassword() {
+      const entered = input ? input.value.trim() : '';
+      if (entered === CORRECT_PASSWORD) {
+        // SUCCESS 🎉
+        closePasswordGate();
+        if (pendingUrl) {
+          window.open(pendingUrl, '_blank', 'noopener,noreferrer');
+          showToast('Akses diberikan! Selamat belajar ✨📚');
+        }
+      } else {
+        // WRONG ❌
+        if (errorMsg) errorMsg.classList.remove('hidden');
+        if (inputGroup) inputGroup.classList.add('error-state');
+
+        // Shake animation
+        card.classList.remove('shake');
+        void card.offsetWidth; // reflow trigger
+        card.classList.add('shake');
+        card.addEventListener('animationend', () => card.classList.remove('shake'), { once: true });
+
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      }
+    }
+
+    if (submitBtn) submitBtn.addEventListener('click', checkPassword);
+
+    if (input) {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkPassword();
+        // Clear error on typing
+        if (errorMsg) errorMsg.classList.add('hidden');
+        if (inputGroup) inputGroup.classList.remove('error-state');
+      });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+        closePasswordGate();
+      }
+    });
+  }
+
 
   // --- LOCAL STORAGE HANDLING ---
   function loadSavedState() {

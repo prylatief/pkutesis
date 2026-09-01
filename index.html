@@ -993,9 +993,9 @@
             </div>
 
             <div class="library-card-footer">
-              <a href="https://drive.google.com/drive/folders/1U74cgEKaFMpxHuyjaBeaKAy6I8n_8BK5?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-mint btn-full btn-chunky library-btn">
-                <span>Open Semester 1 →</span>
-              </a>
+              <button class="btn btn-mint btn-full btn-chunky library-btn btn-library-access" data-drive-url="https://drive.google.com/drive/folders/1U74cgEKaFMpxHuyjaBeaKAy6I8n_8BK5?usp=drive_link" data-sem="Semester 1">
+                <span>🔐 Buka Semester 1 →</span>
+              </button>
             </div>
           </div>
 
@@ -1016,9 +1016,9 @@
             </div>
 
             <div class="library-card-footer">
-              <a href="https://drive.google.com/drive/folders/16W8Hf4OfILVYYcNH9lVteGv4pz92N3Ya?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sky btn-full btn-chunky library-btn">
-                <span>Open Semester 2 →</span>
-              </a>
+              <button class="btn btn-sky btn-full btn-chunky library-btn btn-library-access" data-drive-url="https://drive.google.com/drive/folders/16W8Hf4OfILVYYcNH9lVteGv4pz92N3Ya?usp=sharing" data-sem="Semester 2">
+                <span>🔐 Buka Semester 2 →</span>
+              </button>
             </div>
           </div>
 
@@ -1039,9 +1039,9 @@
             </div>
 
             <div class="library-card-footer">
-              <a href="https://drive.google.com/drive/folders/19wsp_BgOncGs891pPd4qszb-i6raHJL7?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-lavender btn-full btn-chunky library-btn">
-                <span>Open Semester 3 →</span>
-              </a>
+              <button class="btn btn-lavender btn-full btn-chunky library-btn btn-library-access" data-drive-url="https://drive.google.com/drive/folders/19wsp_BgOncGs891pPd4qszb-i6raHJL7?usp=sharing" data-sem="Semester 3">
+                <span>🔐 Buka Semester 3 →</span>
+              </button>
             </div>
           </div>
 
@@ -1709,5 +1709,68 @@
 
   <!-- Application Logic -->
   <script src="js/app.js"></script>
+
+  <!-- ====== PASSWORD GATE MODAL (Academic Library) ====== -->
+  <div id="password-gate-overlay" class="pw-gate-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pw-gate-title">
+    <div class="pw-gate-card" id="pw-gate-card">
+
+      <!-- Close Button -->
+      <button class="pw-gate-close" id="pw-gate-close" aria-label="Tutup">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Lock Icon + Mascot -->
+      <div class="pw-gate-mascot">
+        <div class="pw-lock-ring">
+          <span class="pw-lock-emoji">🔐</span>
+        </div>
+        <div class="pw-gate-badge">PKU MUI • ANGKATAN 19</div>
+      </div>
+
+      <!-- Texts -->
+      <h3 class="pw-gate-title" id="pw-gate-title">Area Khusus Mahasiswa</h3>
+      <p class="pw-gate-subtitle">Materi ini hanya untuk <strong>mahasiswa PKU MUI Jakarta Angkatan 19</strong>. Masukkan kata sandi untuk membuka akses.</p>
+
+      <!-- Target label -->
+      <div class="pw-gate-target-label">
+        <span class="pw-target-icon">📖</span>
+        <span id="pw-target-sem">Semester 1</span>
+      </div>
+
+      <!-- Input Form -->
+      <div class="pw-input-wrapper">
+        <div class="pw-input-group" id="pw-input-group">
+          <span class="pw-input-icon">🔑</span>
+          <input
+            type="password"
+            id="pw-gate-input"
+            class="pw-input"
+            placeholder="Ketik kata sandi di sini..."
+            maxlength="40"
+            autocomplete="off"
+            aria-label="Kata sandi akses materi"
+          />
+          <button class="pw-toggle-visibility" id="pw-toggle-vis" type="button" aria-label="Tampilkan/Sembunyikan kata sandi">
+            <span id="pw-vis-icon">👁️</span>
+          </button>
+        </div>
+
+        <!-- Error message -->
+        <div class="pw-error-msg hidden" id="pw-error-msg">
+          <span>❌ Kata sandi salah. Coba lagi ya! 🙏</span>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="btn btn-mint btn-chunky pw-submit-btn" id="pw-submit-btn">
+        <span>Buka Materi ✨</span>
+      </button>
+
+      <!-- Hint -->
+      <p class="pw-hint-text">💡 Tanyakan kata sandi ke pengurus kelas atau dosmu.</p>
+
+    </div>
+  </div>
+
 </body>
 </html>
