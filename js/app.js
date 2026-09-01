@@ -298,6 +298,11 @@
   function closeSetupModal() {
     modalOverlay.classList.add('hidden');
     document.body.style.overflow = '';
+    if (state.isCompleted) {
+      setTimeout(() => {
+        openWaModal();
+      }, 400);
+    }
   }
 
   function goToStep(stepNum) {
@@ -477,6 +482,7 @@
     const targetLink = driveLinks[state.method] || driveLinks.startHere;
     window.open(targetLink, '_blank', 'noopener,noreferrer');
     showToast('Membuka Google Drive Research OS... 🚀');
+    closeSetupModal();
   }
 
   function showToast(message) {
@@ -771,13 +777,58 @@
     });
   }
 
-  // --- WA GROUP GUIDANCE MODAL LOGIC (2-STEP VISIT & MINIMIZE) ---
+  // --- WA GROUP GUIDANCE MODAL LOGIC ---
   const WA_MODAL_STORAGE_KEY = 'pku_wa_popup_status';
   let waPopupStep = 1;
 
-  function initWaModal() {
+  function showWaStep(step) {
+    const waStep1 = document.getElementById('wa-popup-step-1');
+    const waStep2 = document.getElementById('wa-popup-step-2');
     const waOverlay = document.getElementById('wa-group-modal-overlay');
     const waCard = waOverlay ? waOverlay.querySelector('.wa-modal-card') : null;
+
+    waPopupStep = step;
+    if (step === 1) {
+      if (waStep1) waStep1.classList.remove('hidden');
+      if (waStep2) waStep2.classList.add('hidden');
+    } else {
+      if (waStep1) waStep1.classList.add('hidden');
+      if (waStep2) waStep2.classList.remove('hidden');
+      if (waCard) {
+        waCard.classList.remove('shake-anim');
+        void waCard.offsetWidth; // trigger reflow for animation restart
+        waCard.classList.add('shake-anim');
+      }
+    }
+  }
+
+  function openWaModal() {
+    const waOverlay = document.getElementById('wa-group-modal-overlay');
+    if (!waOverlay) return;
+
+    // Check if user already completed or dismissed in this session
+    const status = sessionStorage.getItem(WA_MODAL_STORAGE_KEY);
+    if (status === 'completed' || status === 'dismissed') {
+      return;
+    }
+
+    showWaStep(1);
+    waOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWaModal() {
+    const waOverlay = document.getElementById('wa-group-modal-overlay');
+    if (waOverlay) {
+      waOverlay.classList.add('hidden');
+    }
+    if (!modalOverlay || modalOverlay.classList.contains('hidden')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  function initWaModal() {
+    const waOverlay = document.getElementById('wa-group-modal-overlay');
     const waStep1 = document.getElementById('wa-popup-step-1');
     const waStep2 = document.getElementById('wa-popup-step-2');
 
@@ -787,51 +838,24 @@
     const btnJoin2 = document.getElementById('wa-btn-join-2');
     const btnSkip1 = document.getElementById('wa-btn-skip-1');
     const btnSkip2 = document.getElementById('wa-btn-skip-2');
+    const waFloatingBtn = document.getElementById('wa-floating-btn');
 
     if (!waOverlay || !waStep1 || !waStep2) return;
 
-    // Check if user already completed or dismissed Popup #2 in this session
-    const status = sessionStorage.getItem(WA_MODAL_STORAGE_KEY);
-    if (status === 'completed' || status === 'dismissed') {
-      waOverlay.classList.add('hidden');
-      return;
-    }
-
-    // Auto-show Popup #1 when user enters the web link
-    waPopupStep = 1;
-    showStep(1);
-    waOverlay.classList.remove('hidden');
-
-    function showStep(step) {
-      waPopupStep = step;
-      if (step === 1) {
-        waStep1.classList.remove('hidden');
-        waStep2.classList.add('hidden');
-      } else {
-        waStep1.classList.add('hidden');
-        waStep2.classList.remove('hidden');
-        if (waCard) {
-          waCard.classList.remove('shake-anim');
-          void waCard.offsetWidth; // trigger reflow for animation restart
-          waCard.classList.add('shake-anim');
-        }
-      }
-    }
-
     function handleDismissAttempt() {
       if (waPopupStep === 1) {
-        // First skip/minimize/close attempt -> Show Popup #2 before entering web!
-        showStep(2);
+        // First skip/minimize/close attempt -> Show Step 2 reminder
+        showWaStep(2);
       } else {
-        // Second skip/minimize/close attempt -> Close modal & allow user into web
+        // Second skip/minimize/close attempt -> Dismiss modal
         sessionStorage.setItem(WA_MODAL_STORAGE_KEY, 'dismissed');
-        waOverlay.classList.add('hidden');
+        closeWaModal();
       }
     }
 
     function handleJoinGroup() {
       sessionStorage.setItem(WA_MODAL_STORAGE_KEY, 'completed');
-      waOverlay.classList.add('hidden');
+      closeWaModal();
     }
 
     if (btnJoin1) btnJoin1.addEventListener('click', handleJoinGroup);
@@ -842,6 +866,12 @@
 
     if (btnClose) btnClose.addEventListener('click', handleDismissAttempt);
     if (btnMinimize) btnMinimize.addEventListener('click', handleDismissAttempt);
+
+    if (waFloatingBtn) {
+      waFloatingBtn.addEventListener('click', () => {
+        sessionStorage.setItem(WA_MODAL_STORAGE_KEY, 'completed');
+      });
+    }
 
     // Overlay background click
     waOverlay.addEventListener('click', (e) => {
