@@ -156,12 +156,12 @@
     function checkPassword() {
       const entered = input ? input.value.trim() : '';
       if (entered === CORRECT_PASSWORD) {
-        // SUCCESS 🎉
-        closePasswordGate();
+        // SUCCESS 🎉 — buka window DULU sebelum apapun (hindari popup blocker)
         if (pendingUrl) {
           window.open(pendingUrl, '_blank', 'noopener,noreferrer');
-          showToast('Akses diberikan! Selamat belajar ✨📚');
         }
+        closePasswordGate();
+        showToast('Akses diberikan! Selamat belajar ✨📚');
       } else {
         // WRONG ❌
         if (errorMsg) errorMsg.classList.remove('hidden');
@@ -184,10 +184,14 @@
 
     if (input) {
       input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') checkPassword();
-        // Clear error on typing
-        if (errorMsg) errorMsg.classList.add('hidden');
-        if (inputGroup) inputGroup.classList.remove('error-state');
+        if (e.key === 'Enter') {
+          // Enter = cek password langsung
+          checkPassword();
+        } else {
+          // Hapus error saat user mulai ketik ulang
+          if (errorMsg) errorMsg.classList.add('hidden');
+          if (inputGroup) inputGroup.classList.remove('error-state');
+        }
       });
     }
 
